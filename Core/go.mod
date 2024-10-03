@@ -1,3 +1,3 @@
-module github.com/matelq/DistributedP2P/Center
+module github.com/matelq/p2pmp/Core
 
 go 1.22.5
