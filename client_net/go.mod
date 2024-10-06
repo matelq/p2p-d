@@ -1,4 +1,4 @@
-module github.com/matelq/p2pmp/p2p_manager
+module github.com/matelq/p2pmp/client_net
 
 go 1.23.1
 
