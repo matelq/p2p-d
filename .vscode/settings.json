@@ -8,6 +8,7 @@
         "nolint",
         "randutil",
         "webrtc",
+        "yamux",
         "однорангового",
         "одноранговым"
     ]

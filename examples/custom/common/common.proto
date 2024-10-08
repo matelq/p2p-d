@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package common;
+
+option go_package = "github.com/matelq/p2pmp/examples/custom/common";
+
+service P2PManager {
+  rpc SendMessage(Message) returns(Echo) {}
+}
+
+message Message {
+  string text = 1;
+}
+
+message Echo {
+  string text = 1;
+}
