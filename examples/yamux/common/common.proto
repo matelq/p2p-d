@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package common;
 
-option go_package = "github.com/matelq/p2pmp/example/common";
+option go_package = "github.com/matelq/p2pmp/examples/yamux/common";
 
 service P2PManager {
   rpc SendMessage(Message) returns(Echo) {}

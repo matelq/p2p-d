@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/hashicorp/yamux"
-	"github.com/matelq/p2pmp/common"
+	"github.com/matelq/p2pmp/examples/yamux/common"
 
 	"google.golang.org/grpc"
 )

@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/matelq/p2pmp/example/common"
+	"github.com/matelq/p2pmp/examples/custom/common"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/encoding"
@@ -42,5 +42,4 @@ func main() {
 		log.Fatalf("could not send: %v", err)
 	}
 	log.Printf("echo: %s", r.Text)
-
 }
