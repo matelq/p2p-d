@@ -11,40 +11,63 @@ import (
 	"github.com/matelq/p2pmp/examples/yamux/common"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
-type myP2PManagerServer struct {
-	common.UnimplementedP2PManagerServer
+type ClientServerImpl struct {
+	common.UnimplementedClientServerServer
 }
 
-func (s myP2PManagerServer) SendMessage(context context.Context, message *common.Message) (*common.Echo, error) {
-	log.Printf("SendMessage called: %s", message.Text)
+func (server ClientServerImpl) CallFuncOnClient(context context.Context, text *common.Text) (*common.Text, error) {
+	log.Printf("CallFuncOnClient called: %s", text.Data)
 
-	return &common.Echo{
-		Text: fmt.Sprintf("Echo: %s", message.Text),
-	}, nil
+	return &common.Text{Data: fmt.Sprintf("Echo: %s", text.Data)}, nil
+}
+
+func callServer() {
+	conn, err := grpc.NewClient("89.169.34.96:3000", grpc.WithTransportCredentials(insecure.NewCredentials()))
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer conn.Close()
+
+	for {
+		client := common.NewServerServerClient(conn)
+		res, err := client.CallFuncOnServer(context.Background(), &common.Text{Data: "Message from client to server"})
+
+		if err != nil {
+			panic(err)
+		}
+
+		log.Printf("Response: %s", res.Data)
+		time.Sleep(time.Second * 2)
+	}
 }
 
 func main() {
-	conn, err := net.DialTimeout("tcp", "127.0.0.1:3000", 10*time.Second)
+	conn, err := net.DialTimeout("tcp", "89.169.34.96:3001", 10*time.Second)
 
 	if err != nil {
 		panic(err)
 	}
 
-	session, err := yamux.Server(conn, yamux.DefaultConfig())
+	yamuxSession, err := yamux.Server(conn, yamux.DefaultConfig())
 
 	if err != nil {
 		panic(err)
 	}
 
-	server := grpc.NewServer()
-	service := &myP2PManagerServer{}
-	common.RegisterP2PManagerServer(server, service)
+	grpcServer := grpc.NewServer()
+	clientServerImpl := &ClientServerImpl{}
+	common.RegisterClientServerServer(grpcServer, clientServerImpl)
 
 	log.Println("launching gRPC server over TCP connection...")
 
-	err = server.Serve(session)
+	go callServer()
+
+	err = grpcServer.Serve(yamuxSession)
 
 	if err != nil {
 		panic(err)
