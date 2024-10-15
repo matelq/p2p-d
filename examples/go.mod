@@ -4,7 +4,6 @@ go 1.23.1
 
 require (
 	github.com/hashicorp/yamux v0.1.2
-	github.com/matelq/p2pmp/common v0.0.0-20241008113327-949ddc5a1bd4
 	github.com/pion/randutil v0.1.0
 	github.com/pion/webrtc/v4 v4.0.0-beta.34
 	google.golang.org/grpc v1.67.1

@@ -4,14 +4,14 @@ package common;
 
 option go_package = "github.com/matelq/p2pmp/examples/yamux/common";
 
-service P2PManager {
-  rpc SendMessage(Message) returns(Echo) {}
+service ServerServer {
+  rpc CallFuncOnServer(Text) returns(Text) {}
 }
 
-message Message {
-  string text = 1;
+service ClientServer {
+  rpc CallFuncOnClient(Text) returns(Text) {}
 }
 
-message Echo {
-  string text = 1;
+message Text {
+  string data = 1;
 }
