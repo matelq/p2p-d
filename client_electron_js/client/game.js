@@ -168,18 +168,7 @@ function gameLoop() {
 }
 
 
-// Установка WebSocket
-const socket = new WebSocket('ws://localhost:8080');
 
-socket.onopen = function() {
-    console.log('Подключено к серверу');
-    socket.send('Привет от клиента!');
-};
-
-socket.onmessage = function(event) {
-    console.log('Сообщение от сервера:', event.data);
-    // Здесь обрабатывай сообщения от сервера (например, обновления других игроков)
-};
 
 // Начало игрового цикла
 gameLoop();
