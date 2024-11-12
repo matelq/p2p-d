@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+// TODO: надо еще почитать по поводу названий пакетов
+package common.contracts;
+option go_package = "github.com/matelq/p2pmp/src/network/common/contracts";
+
+// Файл исключительно для моделек, используемых в grpc
+
+message Text {
+  string data = 1;
+}
