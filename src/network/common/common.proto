@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package common;
-
-option go_package = "github.com/matelq/p2pmp/src/network/common";
-
-
-
-
