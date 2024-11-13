@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+// TODO: надо еще почитать по поводу названий пакетов
+package common.node;
+
+// не запускал и не тестил, но короче надо +- так прокинуть общий файл
+import "contracts.proto"
+
+option go_package = "github.com/matelq/p2pmp/src/network/common/node";
+
+service Node {
+  rpc CallFuncOnNode(Text) returns(Text) {}
+}
+
+// Файл для сервиса grpc узла (Node) (сервер на клиенте для приема сообщений от центра и/или по p2p от другого клиента)

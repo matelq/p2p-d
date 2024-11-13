@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+// TODO: надо еще почитать по поводу названий пакетов
+package common.regulator;
+
+// не запускал и не тестил, но короче надо +- так прокинуть общий файл
+import "contracts.proto"
+
+option go_package = "github.com/matelq/p2pmp/src/network/common/regulator";
+
+service Regulator {
+  rpc CallFuncOnRegulator(Text) returns(Text) {}
+}
+
+// TODO: подумать над названием, возможные: regulator, orchestrator, conductor
+// Файл для сервиса "регулировщика/оркестратора/дирижера/" (regulator)
+// По запросу должен "переключать" узлы на P2P режим
