@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+// TODO: надо еще почитать по поводу названий пакетов
+package common.commuter;
+
+// не запускал и не тестил, но короче надо +- так прокинуть общий файл
+import "contracts.proto"
+
+option go_package = "github.com/matelq/p2pmp/src/network/common/commuter";
+
+service Commuter {
+  rpc CallFuncOnCommuter(Text) returns(Text) {}
+}
+
+// Файл для сервиса gRPC коммутатора (Commuter) (aka p2p_manager, служит для соединения N узлов в сеть через себя)

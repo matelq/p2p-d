@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+// TODO: надо еще почитать по поводу названий пакетов
+package common.transmitter;
+
+// не запускал и не тестил, но короче надо +- так прокинуть общий файл
+import "contracts.proto"
+
+option go_package = "github.com/matelq/p2pmp/src/network/common/transmitter";
+
+service Transmitter {
+  rpc CallFuncOnTransmitter(Text) returns(Text) {}
+}
+
+// TODO: думаю над названием, возможные: transmitter, transposer, translator 
+// Файл для сервиса grpc передатчика (transmitter) 
+// основной сервер, его цель - трансляций сообщений,
+// например игровой сервер<->игровой клиент и наоборот)
